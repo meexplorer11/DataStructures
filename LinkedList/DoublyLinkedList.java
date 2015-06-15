@@ -56,16 +56,62 @@ public class DoublyLinkedList {
 			head = n;
 			n.next = n.prev = head;
 		} else {
-			Node lastNode = head;
-			while(lastNode.next != head) {
-				lastNode = lastNode.next;
-			}
-			
+			Node lastNode = head.prev;
+			lastNode.next = n;
 			n.next = head;
 			n.prev = lastNode;
-			lastNode.next = n;
+			head.prev = n;
 		}
 		size++;
+	}
+	
+	public void deleteFirst() {
+		if(head == null)
+			System.out.println("List is empty, nothing to delete!");
+		
+		Node firstNode = head;
+		firstNode.prev.next = firstNode.next;
+		firstNode.next.prev = firstNode.prev;
+		head = firstNode.next;
+		
+		firstNode.prev = firstNode.next = null;
+		firstNode = null;
+		
+		size--;
+	}
+	
+	public void deleteAtPosition(int pos) {
+		if(pos == -1 || pos > size)
+			System.out.println("Target position is not valid !");
+		
+		if(pos == 1) {
+			deleteFirst();
+		} else if(pos == size) {
+			deleteLast();
+		} else {
+			Node currentNode = head;
+			int count = 1;
+			while(count++ < pos-1) {
+				currentNode = currentNode.next;
+			}
+			Node deleteNode = currentNode.next;
+			currentNode.next = deleteNode.next;
+			deleteNode.next.prev = currentNode;
+			deleteNode = null;
+			size--;
+		}
+	}
+	
+	public void deleteLast() {
+		if(head == null)
+			System.out.println("List is empty, nothing to delete!");
+		
+		Node lastNode = head.prev;
+		head.prev = lastNode.prev;
+		lastNode.prev.next = head;
+		lastNode = null;
+		
+		size--;
 	}
 	
 	public int countNodes() {
