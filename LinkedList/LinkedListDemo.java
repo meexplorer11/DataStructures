@@ -67,5 +67,17 @@ public class LinkedListDemo {
 		System.out.println(dll);
 		
 		System.out.println("\nCount nodes- "+dll.countNodes());
+		
+		System.out.println("\nDeleting first node-");
+		dll.deleteFirst();
+		System.out.println(dll);
+		
+		System.out.println("\nDeleting last node-");
+		dll.deleteLast();
+		System.out.println(dll);
+		
+		System.out.println("\nDeleting at position 3-");
+		dll.deleteAtPosition(3);
+		System.out.println(dll);
 	}
 }
