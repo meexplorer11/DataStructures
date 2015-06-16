@@ -108,6 +108,34 @@ public class SinglyLinkedList {
 		size--;
 	}
 	
+	public int findNthFromLast(int nthNode) {
+		if(nthNode == -1 || !(size-nthNode > 0))
+			throw new IllegalArgumentException("Invalid nth node.");
+		
+		int reqNode = size-nthNode;
+		int count = 1;
+		Node currenNode = head;
+		while(count++ < reqNode) {
+			currenNode = currenNode.next;
+		}
+		return currenNode.data;
+	}
+	
+	public void insertInSortedList(int data) {
+		if(head == null)
+			addFirst(data);
+		
+		Node n = new Node(data);
+		Node NextNode = head;
+		Node currentNode = head;
+		while(NextNode.next != null && NextNode.data < data) {
+			currentNode = NextNode;
+			NextNode = NextNode.next;
+		}
+		n.next = NextNode;
+		currentNode.next = n;
+	}
+	
 	public int countNodes() {
 		if(head == null)
 			return 0;
