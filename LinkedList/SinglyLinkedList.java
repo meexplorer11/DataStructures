@@ -1,7 +1,14 @@
 package list;
 
+/**
+ * Singly Linked List implementation 
+ * @author Vivek Maurya
+ */
 public class SinglyLinkedList {
 
+	/**
+	 * Starting node of the list.
+	 */
 	private Node head;
 	private int size;
 	
@@ -39,6 +46,7 @@ public class SinglyLinkedList {
 			Node n = new Node(data);
 			n.next = prevNode.next;
 			prevNode.next = n;
+			size++;
 		}
 	}
 	
@@ -54,6 +62,50 @@ public class SinglyLinkedList {
 			currentNode.next = n;
 		}
 		size++;
+	}
+	
+	public void deleteFirst() {
+		if(head == null)
+			System.out.println("List is empty !");
+		
+		Node firstNode = head;
+		head = head.next;
+		firstNode = null;
+		size--;
+	}
+	
+	public void deleteAtPosition(int pos) {
+		if(pos == -1 || pos > size)
+			System.out.println("Target position is not valid !");
+		
+		if(pos == 1) {
+			deleteFirst();
+		} else if(pos == size) {
+			deleteLast();
+		} else {
+			Node prevNode = head;
+			int count = 1;
+			while(count < pos-1) {
+				prevNode = prevNode.next;
+				count++;
+			}
+			Node deleteNode = prevNode.next;
+			prevNode.next = deleteNode.next;
+			deleteNode = null;
+			size--;
+		}
+	}
+
+	public void deleteLast() {
+		if(head == null)
+			System.out.println("List is empty !");
+		
+		Node currentNode = head;
+		while(currentNode.next.next != null) {
+			currentNode = currentNode.next;
+		}
+		currentNode.next = null;
+		size--;
 	}
 	
 	public int countNodes() {
