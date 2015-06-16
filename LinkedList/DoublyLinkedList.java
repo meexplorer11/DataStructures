@@ -114,6 +114,34 @@ public class DoublyLinkedList {
 		size--;
 	}
 	
+	public int findNthFromLast(int nthNode) {
+		if(nthNode == -1 || !(size-nthNode > 0))
+			throw new IllegalArgumentException("Invalid nth node.");
+		
+		Node lastNode = head.prev;
+		int count = 1;
+		while(count++ <= nthNode) {
+			lastNode = lastNode.prev;
+		}
+		return lastNode.data;
+	}
+	
+	public void insertInSortedList(int data) {
+		if(head == null)
+			addFirst(data);
+		
+		Node n = new Node(data);
+		Node nextNode = head;
+		while(nextNode.next != head && nextNode.data < data) {
+			nextNode = nextNode.next;
+		}
+		n.next = nextNode;
+		nextNode.prev.next = n;
+		n.prev = nextNode.prev;
+		nextNode.prev = n;
+		
+	}
+	
 	public int countNodes() {
 		if(head == null)
 			return 0;
