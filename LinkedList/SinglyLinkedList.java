@@ -1,5 +1,7 @@
 package list;
 
+import java.util.Stack;
+
 /**
  * Singly Linked List implementation 
  * @author Vivek Maurya
@@ -163,6 +165,60 @@ public class SinglyLinkedList {
 				count++;
 		}
 		return count;
+	}
+	
+	public void reverse() {
+		Node prev = null;
+		Node next = null;
+		Node current = head;
+		
+		while(current != null) {
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+		}
+		head = prev;
+	}
+	
+	public boolean detectLoop() {
+		if(head == null)
+			return false;
+		
+		Node slow = head;
+		Node fast = head;
+		while(fast != null && fast.next != null) {
+			fast = fast.next.next;
+			slow = slow.next;
+			if(fast.data == slow.data) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public void isPaindrome() {
+		if(head == null)
+			System.out.println("List is empty.");
+		Node temp = head;
+		Stack<Node> st = new Stack<SinglyLinkedList.Node>();
+		while(temp != null) {
+			st.push(temp);
+			temp = temp.next;
+		}
+		
+		temp = head;
+		Node curr = null;
+		while(temp != null) {
+			curr = st.pop();
+			if(curr.data == temp.data)
+				temp = temp.next;
+			else {
+				System.out.println("List is not palindrome.");
+				break;
+			}
+		}
 	}
 
 	private void incrementSize() {
