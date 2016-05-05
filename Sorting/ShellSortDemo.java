@@ -13,6 +13,9 @@ public class ShellSortDemo {
 		K[] a;
 		
 		public ShellSort(K[] a) {
+			if(input == null)
+				throw new IllegalArgumentException();
+			
 			this.a = a;
 		}
 		
