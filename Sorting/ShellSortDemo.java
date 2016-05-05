@@ -13,7 +13,7 @@ public class ShellSortDemo {
 		K[] a;
 		
 		public ShellSort(K[] a) {
-			if(input == null)
+			if(a == null)
 				throw new IllegalArgumentException();
 			
 			this.a = a;
