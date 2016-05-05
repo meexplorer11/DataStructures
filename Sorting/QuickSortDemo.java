@@ -13,6 +13,9 @@ public class QuickSortDemo {
 		K[] a;
 		
 		public QuickSort(K[] a) {
+			if(a == null)
+				throw new IllegalArgumentException();
+			
 			this.a = a;
 		}
 		
