@@ -1,5 +1,8 @@
-package algos.search;
-
+/**
+ * 
+ * @author Javargon
+ *
+ */
 public class LinearSearchDemo {
 
 	public static void main(String[] args) {
